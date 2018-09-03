@@ -23,6 +23,7 @@ let cursors;                            // Variable to hold arrowkeys input
 let player;                             // Variable to hold the player object
 let enemy;                              // Variable to hold enmey follow player
 let patrollingEnemy;                    // Variable to hold enemy patroll 
+let randomWalkEnemy;                    // Random walking enemy
 let speed = 200;                        // Walking speed for player
 
 function preload() {                                                            // Load all assets into our game
@@ -70,6 +71,10 @@ function create() {
     /* Code block for enemy patroll */
     patrollingEnemy = this.physics.add.sprite(300, 400, 'enemy').setImmovable();
     this.physics.add.collider(patrollingEnemy, [player, walls_and_floor, objects_on_floor]); 
+
+    /* Code block for random walking enemy */
+    randomWalkEnemy = this.physics.add.sprite(200, 500, 'enemy');
+    this.physics.add.collider(randomWalkEnemy, [player, walls_and_floor, objects_on_floor]); 
     
     /* for (let i = 0; i < 400; i++){                                              // Loop to spawn multiple enemies
         let positionX = Math.floor((Math.random() * 300) +100);                 // Random number from 100 to 400
@@ -96,6 +101,14 @@ function update(time, delta) {
     if(patrollingEnemy.x >= 600) {
         patrollingEnemy.body.setVelocityX(-speed);
     }
+
+    /* Random walk enemy */
+    randX = Math.floor((Math.random() * speed) + 1);    // Set random speed 1 - 200
+    randX *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // Set 50% chance of negative X speed
+    randY = Math.floor((Math.random() * speed) + 1);    // Set random speed 1 - 200
+    randY *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // Set 50% chance of negative Y speed
+
+    randomWalkEnemy.body.setVelocity(randX, randY); // Set random velocity to random walk enemy
 
     player.body.setVelocity(0);                     // Reset the players velocity to 0 each frame, to make the player stop
 
