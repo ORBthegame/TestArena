@@ -21,7 +21,8 @@ const config = {
 const game = new Phaser.Game(config);   // Creates a new game based on the config above
 let cursors;                            // Variable to hold arrowkeys input
 let player;                             // Variable to hold the player object
-let enemy;
+let enemy;                              // Variable to hold enmey follow player
+let patrollingEnemy;                    // Variable to hold enemy patroll 
 let speed = 200;                        // Walking speed for player
 
 function preload() {                                                            // Load all assets into our game
@@ -60,10 +61,15 @@ function create() {
     
     this.physics.add.collider(player, [walls_and_floor, objects_on_floor]);     // Watch for collision between the player and the world layer
     
+    /* Code block for enemy follower */
     enemy = this.physics.add.sprite(300, 400, 'enemy');                         // Adds physics and spawns the enemy
     this.physics.add.collider(enemy, [walls_and_floor, objects_on_floor]);      // Enemy collision with walls and objects
     
     this.physics.add.collider(enemy, player);                                   // Enemy collision with player
+
+    /* Code block for enemy patroll */
+    patrollingEnemy = this.physics.add.sprite(300, 400, 'enemy').setImmovable();
+    this.physics.add.collider(patrollingEnemy, [player, walls_and_floor, objects_on_floor]); 
     
     /* for (let i = 0; i < 400; i++){                                              // Loop to spawn multiple enemies
         let positionX = Math.floor((Math.random() * 300) +100);                 // Random number from 100 to 400
@@ -77,10 +83,20 @@ function create() {
 }
 
 function update(time, delta) {    
+    // Update is the main GAME-LOOP, it is run once every frame
     
-     // Update is the main GAME-LOOP, it is run once every frame
+    
     this.physics.moveToObject(enemy, player, 100);  // Make enemy move towards player position at 100px/s
-   
+    
+
+    /* Code chunk for patrolling enemy, change x velocity depending on x position */
+    if(patrollingEnemy.x <= 300) {
+        patrollingEnemy.body.setVelocityX(speed);
+    }
+    if(patrollingEnemy.x >= 600) {
+        patrollingEnemy.body.setVelocityX(-speed);
+    }
+
     player.body.setVelocity(0);                     // Reset the players velocity to 0 each frame, to make the player stop
 
     if (cursors.left.isDown) {                      // Horizontal movement
