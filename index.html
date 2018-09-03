@@ -79,7 +79,12 @@
             
             this.physics.add.collider(player, [walls_and_floor, objects_on_floor]);     // Watch for collision between the player and the world layer
             
-            for (let i = 0; i < 400; i++){                                              // Loop to spawn multiple enemies
+            enemy = this.physics.add.sprite(300, 400, "enemy");                         // Adds physics and spawns the enemy
+            this.physics.add.collider(enemy, [walls_and_floor, objects_on_floor]);      // Enemy collision with walls and objects
+            
+            this.physics.add.collider(enemy, player);                                   // Enemy collision with player
+            
+            /* for (let i = 0; i < 400; i++){                                              // Loop to spawn multiple enemies
                 let positionX = Math.floor((Math.random() * 300) +100);                 // Random number from 100 to 400
                 let positionY = Math.floor((Math.random() * 200) +100);                 // Random number from 100 to 300            
                 let enemy = this.physics.add.sprite(positionX, positionY, "enemy");     // Adds physics and spawns the enemy at radom positions generated above
@@ -87,10 +92,14 @@
                 enemy.body.setVelocityY(positionY/3);                                   // Sets the velocity (movement speed) of the enemy along the Y axis
                 this.physics.add.collider(enemy, [walls_and_floor, objects_on_floor]);  // Adds collision between the enemy and map
                 this.physics.add.collider(enemy, player);                               // Adds collision between the enemy and player      
-            }        
+            }    */     
         }
 
-        function update(time, delta) {                      // Update is the main GAME-LOOP, it is run once every frame
+        function update(time, delta) {    
+            
+             // Update is the main GAME-LOOP, it is run once every frame
+            this.physics.moveToObject(enemy, player, 100);  // Make enemy move towards player position at 100px/s
+           
             player.body.setVelocity(0);                     // Reset the players velocity to 0 each frame, to make the player stop
 
             if (cursors.left.isDown) {                      // Horizontal movement
@@ -105,7 +114,8 @@
                 player.body.setVelocityY(speed);
             }
 
-            player.body.velocity.normalize().scale(speed);  // Normalize the players speed when moving diagonally (wont move faster diagonally)
+            player.body.velocity.normalize().scale(speed);                                           // Normalize the players speed when moving diagonally (wont move faster diagonally)
+            player.body.debugBodyColor = player.body.touching.none ? '_' : console.log("collision"); // Console log collision when enemy and player collide
         }
         </script>
     </body>
