@@ -25,6 +25,9 @@ let enemy;                              // Variable to hold enmey follow player
 let patrollingEnemy;                    // Variable to hold enemy patroll 
 let randomWalkEnemy;                    // Random walking enemy
 let speed = 200;                        // Walking speed for player
+let randomSpeed = 100;
+let EKey;
+
 
 function preload() {                                                            // Load all assets into our game
     this.load.image('tiles', './Assets/DarkDungeonv2_1x.png');                  // Load tiles from the tileset and references it with the key : 'tiles'
@@ -84,7 +87,13 @@ function create() {
         enemy.body.setVelocityY(positionY/3);                                   // Sets the velocity (movement speed) of the enemy along the Y axis
         this.physics.add.collider(enemy, [walls_and_floor, objects_on_floor]);  // Adds collision between the enemy and map
         this.physics.add.collider(enemy, player);                               // Adds collision between the enemy and player      
-    }    */     
+    }    */  
+    
+    /* Keyboard input */
+    this.input.keyboard.on('keydown_E', (event) => {
+        let fire = this.physics.add.sprite(player.x, player.y, 'enemy');
+        fire.body.setVelocityX(speed);
+    })
 }
 
 function update(time, delta) {    
@@ -103,13 +112,19 @@ function update(time, delta) {
     }
 
     /* Random walk enemy */
-    randX = Math.floor((Math.random() * speed) + 1);    // Set random speed 1 - 200
-    randX *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // Set 50% chance of negative X speed
-    randY = Math.floor((Math.random() * speed) + 1);    // Set random speed 1 - 200
-    randY *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // Set 50% chance of negative Y speed
+    
+    if (Math.floor(time % 2000) <= 500) {
+        if (Math.floor(time % 2000) >= 450) {
+        console.log("ASDASD");
+        randX = Math.floor((Math.random() * randomSpeed) + 1);    // Set random speed 1 - 200
+        randX *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // Set 50% chance of negative X speed
+        randY = Math.floor((Math.random() * randomSpeed) + 1);    // Set random speed 1 - 200
+        randY *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // Set 50% chance of negative Y speed
 
-    randomWalkEnemy.body.setVelocity(randX, randY); // Set random velocity to random walk enemy
-
+        randomWalkEnemy.body.setVelocity(randX, randY); // Set random velocity to random walk enemy
+        }
+    }
+    
     player.body.setVelocity(0);                     // Reset the players velocity to 0 each frame, to make the player stop
 
     if (cursors.left.isDown) {                      // Horizontal movement
