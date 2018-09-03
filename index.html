@@ -68,7 +68,6 @@
                 faceColor: new Phaser.Display.Color(40, 39, 37, 255)                    // Color of colliding face edges
             });
             
-            
             const spawnPoint = map.findObject("objects", obj => obj.name === "starting_point");         // Find object in tilemap (json) with name property of "starting_point"
             player = this.physics.add.sprite(600, 400, "player");                                       // Spawns and adds physics to the player sprite on the declared spawnpoint and ajdust its scale
             
