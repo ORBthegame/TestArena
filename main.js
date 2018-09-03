@@ -34,6 +34,7 @@ function preload() {                                                            
     this.load.image('enemy', './Assets/enemy.png');                                    // Load in image to be used as example enemy
     this.load.image('player', './Assets/wizard.png');                           // Load image to be used as player references it with the key : 'tiles'
     this.load.tilemapTiledJSON('map', './Assets/Warlock_Arena.json');           // Load the json map structure created with Tiled. references it with the key : 'map'
+    this.load.image('fire', './Assets/flame_ability.png');
 }
 
 function create() {
@@ -91,7 +92,7 @@ function create() {
     
     /* Keyboard input */
     this.input.keyboard.on('keydown_E', (event) => {
-        let fire = this.physics.add.sprite(player.x, player.y, 'enemy');
+        let fire = this.physics.add.sprite(player.x, player.y, 'fire');
         fire.body.setVelocityX(speed);
     })
 }
