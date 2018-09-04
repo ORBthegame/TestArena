@@ -10,12 +10,14 @@
     </head>
     <body>
         
-        <!-- <h1> Warlock Arena Testing </h1> -->
+        <!-- Section containing login and signup box, and the game. Game will be hidden as default before login -->
         <section>
             <div id="login" class="login-modal">
+                <!-- Main navigation buttons between login and signup -->
                 <button id="loginTab" class="btn">Log in</button>
                 <button id="signupTab" class="btn">Sign up</button>
                 
+                <!-- Form for login, will be hidden when signuptab button is pressed -->
                 <form id="loginForm">
                     <label for="username">Username</label>
                     <input
@@ -33,11 +35,13 @@
                     />
                     <input 
                         type="submit"
-                        value="login"
+                        value="Login"
                         id="submitLogin"
                         class="btn"
                     />
                 </form>
+
+                <!-- Form for signup, will be hidden as standard or when logintab button is pressed -->
                 <form id="signupForm" class="hide">
                     <label for="createUsername">Create username</label>
                     <input
@@ -67,10 +71,13 @@
                     />
                 </form>
             </div>
-
-        <div id="game-container"> </div>
+            
+            <!-- parent container for phaser game -->
+            <div id="game-container"> </div>
+        
         </section>
+
+        <!-- Loads the index javascript -->
         <script src="index.js" type="text/javascript"></script>
-        <!-- <script src="main.js" type="text/javascript"></script> -->
     </body>
 </html>
