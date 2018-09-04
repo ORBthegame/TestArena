@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+        <title>Warlock Arena</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        
+        <!-- <h1> Warlock Arena Testing </h1> -->
+        <section>
+            <div id="login" class="login-modal">
+                <button id="loginTab" class="btn">Log in</button>
+                <button id="signupTab" class="btn">Sign up</button>
+                
+                <form id="loginForm">
+                    <label for="username">Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="Enter username"
+                    />
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Enter password"
+                    />
+                    <input 
+                        type="submit"
+                        value="login"
+                        id="submitLogin"
+                        class="btn"
+                    />
+                </form>
+                <form id="signupForm" class="hide">
+                    <label for="createUsername">Create username</label>
+                    <input
+                        type="text"
+                        name="createUsername"
+                        id="createUsername"
+                        placeholder="Create username"
+                    />
+                    <label for="createPassword">Create password</label>
+                    <input
+                        type="password"
+                        name="createPassword"
+                        id="createPassword"
+                        placeholder="Create password"
+                    />
+                    <label for="repeatPassword">Repeat Password</label>
+                    <input
+                        type="password"
+                        name="repeatPassword"
+                        id="repeatPassword"
+                        placeholder="Repeat password"
+                    />
+                    <input
+                        type="submit"
+                        value="Register"
+                        class="btn"
+                    />
+                </form>
+            </div>
+
+        <div id="game-container"> </div>
+        </section>
+        <script>
+            /* const audio = new Audio('Assets/music.mp3');
+            audio.play(); */
+        </script>
+        <script src="index.js" type="text/javascript"></script>
+        <!-- <script src="main.js" type="text/javascript"></script> -->
+    </body>
+</html>

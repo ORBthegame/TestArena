@@ -1,0 +1,63 @@
+* {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('Assets/login.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+h1 {
+    color: black;
+}
+
+.hide {
+    display: none;
+}
+
+/* standard btn */
+
+.btn {
+    min-width: 5rem;
+    padding: 0.5rem;
+    margin: 1rem;
+    background: #ececec;
+    border: none;
+}
+
+/* Form-modal styling */
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+.login-modal {
+   
+    margin-top: 10rem;
+    width: 25%;
+    border: 1px solid red;
+    padding: 2rem;
+    
+}
+
+.login-modal input[type=text], input[type=password] {
+    width: 100%;
+    padding: 0.5rem;
+    
+}
+
+input {
+    margin: 1rem 0 1rem 0;
+    
+}
